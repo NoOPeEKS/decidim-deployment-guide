@@ -1,0 +1,31 @@
+version: "3"
+services:
+  decidim:
+    image: ghcr.io/decidim/decidim:latest
+    entrypoint: ["/code/vendor/hello-world.sh"]
+    command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+    ports:
+      - 3000:3000
+    volumes:
+      - ./scripts:/code/vendor
+    environment:
+      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+      - RAILS_ENV=development
+      - DATABASE_HOST=pg
+      - DATABASE_USERNAME=postgres
+    links:
+      - pg
+      - redis
+  pg:
+    image: postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+  redis:
+    image: redis
+    volumes:
+      - redis-data:/data
+volumes:
+  pg-data: {}
+  redis-data: {}
