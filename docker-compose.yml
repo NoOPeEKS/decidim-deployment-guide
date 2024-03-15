@@ -9,7 +9,7 @@ services:
     volumes:
       - ./scripts:/code/vendor
     environment:
-      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
       - RAILS_ENV=development
       - DATABASE_HOST=pg
       - DATABASE_USERNAME=postgres
@@ -26,6 +26,16 @@ services:
     image: redis
     volumes:
       - redis-data:/data
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx.Dockerfile
+    depends_on:
+      - decidim
+      - pg
+      - redis
+    ports:
+      - 8080:80
 volumes:
   pg-data: {}
   redis-data: {}
