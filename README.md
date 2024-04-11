@@ -8,7 +8,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./selfsigned.ke
 This command should generate your self signed certificate and private key and move it to the decidim-tutorial directory. \
 Then, open nginx.conf and add under `listen 443 ssl;` the following lines:
 - `ssl_certificate /etc/ssl/certs/selfsigned.crt;`
-- `ssl_certificate_key /etc/ssl/certs/selfsigned.key;`
+- `ssl_certificate_key /etc/ssl/certs/selfsigned.key;` \
 Then, open nginx.Dockerfile and modify it so that the copy commands look like this:
 - `COPY nginx.conf /tmp/docker.nginx`
 - `COPY selfsigned.crt /etc/ssl/certs/selfsigned.crt`
@@ -23,7 +23,7 @@ cp /etc/letsencrypt/live/subdomain.domain.com/privkey.pem .
 These commands should generate your certificate and private key and move it to the decidim-tutorial directory. \
 Then, open nginx.conf and add under `listen 443 ssl;` the following lines:
 - `ssl_certificate /etc/ssl/certs/fullchain.pem;`
-- `ssl_certificate_key /etc/ssl/certs/privkey.pem;`
+- `ssl_certificate_key /etc/ssl/certs/privkey.pem;` \
 Then, open nginx.Dockerfile and modify it so that the copy commands look like this:
 - `COPY nginx.conf /tmp/docker.nginx`
 - `COPY fullchain.pem /etc/ssl/certs/fullchain.pem`
