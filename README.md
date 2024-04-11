@@ -1,5 +1,10 @@
 # Deploying a Decidim Instance
 
+## Generating selfsigned certificates
+```bash
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./selfsigned.key -out ./selfsigned.crt
+```
+
 ## Building and Running Docker Containers
 
 ```bash
@@ -19,7 +24,7 @@ exit
 
 ## Creating a New Organization
 
-Visit `http://localhost:8080`, and log in with the system user you have created. Fill the form with your organization's data and set `localhost` as the host.
+Visit `https://localhost:8080`, and log in with the system user you have created. Fill the form with your organization's data and set `localhost` as the host.
 
 You now have two options:
 
@@ -48,5 +53,5 @@ user.save! # Permanently update the user in the database
 exit
 ```
 
-3. Navigate to `http://localhost:8080/admin` and log in as the user you just updated.
+3. Navigate to `https://localhost:8080/admin` and log in as the user you just updated.
 4. Customize the website to your preferences!
