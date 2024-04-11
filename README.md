@@ -24,7 +24,7 @@ exit
 
 ## Creating a New Organization
 
-Visit `https://localhost:8080`, and log in with the system user you have created. Fill the form with your organization's data and set `localhost` as the host.
+Visit `https://localhost:443`, and log in with the system user you have created. Fill the form with your organization's data and set `localhost` as the host.
 
 You now have two options:
 
@@ -33,13 +33,13 @@ You now have two options:
 
 ### Option 1: SMTP Server
 
-If you have a functioning SMTP server, click on advanced settings and set your server's information. Click on save and send email, then go to your email and follow the steps to set up your administrator account. You can now visit `http://localhost:8080` and see your webpage. Customize it as you please!
+If you have a functioning SMTP server, click on advanced settings and set your server's information. Click on save and send email, then go to your email and follow the steps to set up your administrator account. You can now visit `https://localhost:443` and see your webpage. Customize it as you please!
 
 ### Option 2: No SMTP Server
 
 If you do not have an SMTP server set up, you can create a user and manually update its privileges to gain admin access through the database.
 
-1. Register only one normal user from within `http://localhost:8080`. This user will be your organization's webpage admin.
+1. Register only one normal user from within `https://localhost:443`. This user will be your organization's webpage admin.
 
 2. Execute the following commands:
 
@@ -53,5 +53,5 @@ user.save! # Permanently update the user in the database
 exit
 ```
 
-3. Navigate to `https://localhost:8080/admin` and log in as the user you just updated.
+3. Navigate to `https://localhost:443/admin` and log in as the user you just updated.
 4. Customize the website to your preferences!
