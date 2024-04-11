@@ -10,7 +10,7 @@ services:
       - ./scripts:/code/vendor
     environment:
       - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-      - RAILS_ENV=development
+      - RAILS_ENV=production
       - DATABASE_HOST=pg
       - DATABASE_USERNAME=postgres
     links:
@@ -35,7 +35,8 @@ services:
       - pg
       - redis
     ports:
-      - 8080:80
+      - 80:80
+      - 443:443
 volumes:
   pg-data: {}
   redis-data: {}
