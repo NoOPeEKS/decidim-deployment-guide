@@ -62,18 +62,14 @@ If you have a functioning SMTP server, click on advanced settings and set your s
 
 If you do not have an SMTP server set up, you can create a user and manually update its privileges to gain admin access through the database.
 
-1. Register only one normal user from within `https://localhost:443`. This user will be your organization's webpage admin.
+1. Register ONLY ONE normal user (must be the first user apart from sysadmin) from within `https://localhost:443`. This user will be your organization's webpage admin. Otherwise, the script will not work properly.
 
 2. Execute the following commands:
 
 ```bash
-sudo docker exec -it decidim-tutorial_decidim_1 /bin/bash # Connect to the Decidim instance container
-bundle exec rails console # Execute Ruby on Rails console
-user = Decidim::User.find_by(id: 2) # Select the second user in the database, which is the one you created earlier in your org's page
-user.admin = true # Set its admin privileges to true
-user.admin_terms_accepted_at = "2024-03-15 12:10:08" # Set a date for accepting admin terms
-user.save! # Permanently update the user in the database
-exit
+cd scripts
+sudo docker ps # This will output every container's info including container id
+./update-orgadmin.sh <CONTAINER_ID>
 ```
 
 3. Navigate to `https://localhost:443/admin` and log in as the user you just updated.
