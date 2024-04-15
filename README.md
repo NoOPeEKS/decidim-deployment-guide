@@ -1,11 +1,11 @@
 # Deploying a Decidim Instance
 
 ## Generating selfsigned certificates
-If you do not have bought a domain, you can still use the application through self signed ssl certificates, but browsers will raise a warning.
+If you haven't bought a domain, you can still use the application through self-signed SSL certificates, but browsers will raise a warning.
 ```bash
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./selfsigned.key -out ./selfsigned.crt
 ```
-This command should generate your self signed certificate and private key and move it to the decidim-tutorial directory. \
+This command should generate your self-signed certificate and private key and move it to the decidim-tutorial directory. \
 Then, open nginx.conf and add under `listen 443 ssl;` the following lines:
 - `ssl_certificate /etc/ssl/certs/selfsigned.crt;`
 - `ssl_certificate_key /etc/ssl/certs/selfsigned.key;` \
