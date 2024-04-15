@@ -37,13 +37,10 @@ sudo docker-compose up
 ```
 
 ## Creating a System Admin User
-
+To create a System Admin User, you only need to execute a single script and pass it its credentials:
 ```bash
-sudo docker exec -it decidim-tutorial_decidim_1 /bin/bash # Connect to the running Decidim instance container
-bundle exec rails console # Execute Ruby on Rails console
-user = Decidim::System::Admin.new(email: 'system@example.org', password: 'decidim123456789', password_confirmation: 'decidim123456789') # Create a new system user with your preferred credentials.
-user.save! # Save the new user permanently into the database
-exit
+cd scripts
+./create-sysadmin.sh system@example.org decidim123456789 # First parameter is email and second parameter is password
 ```
 
 ## Creating a New Organization
@@ -70,7 +67,7 @@ If you do not have an SMTP server set up, you can create a user and manually upd
 ```bash
 sudo docker exec -it decidim-tutorial_decidim_1 /bin/bash # Connect to the Decidim instance container
 bundle exec rails console # Execute Ruby on Rails console
-user = Decidim::User.find_by(id: 2) # Select the first user in the database, which is the one you created earlier
+user = Decidim::User.find_by(id: 2) # Select the second user in the database, which is the one you created earlier in your org's page
 user.admin = true # Set its admin privileges to true
 user.admin_terms_accepted_at = "2024-03-15 12:10:08" # Set a date for accepting admin terms
 user.save! # Permanently update the user in the database
