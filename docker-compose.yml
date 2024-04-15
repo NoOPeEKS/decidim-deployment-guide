@@ -17,27 +17,43 @@ services:
     links:
       - pg
       - redis
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
   pg:
     image: postgres
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
   redis:
     image: redis
     volumes:
       - redis-data:/data
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
   nginx:
+    image: nginx_custom
     build:
       context: .
-      dockerfile: ./nginx.Dockerfile
+      dockerfile: nginx.Dockerfile
     depends_on:
       - decidim
       - pg
       - redis
     ports:
-      - 80:80
       - 443:443
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 volumes:
   pg-data: {}
   redis-data: {}
