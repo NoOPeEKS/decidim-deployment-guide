@@ -1,7 +1,7 @@
 version: "3"
 services:
   decidim:
-    image: ghcr.io/decidim/decidim:latest
+    image: ghcr.io/decidim/decidim:0.28.0
     container_name: container_decidim
     entrypoint: ["/code/vendor/hello-world.sh"]
     command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
@@ -14,6 +14,10 @@ services:
       - RAILS_ENV=production
       - DATABASE_HOST=pg
       - DATABASE_USERNAME=postgres
+      - SMTP_USERNAME=smtpusernamehere
+      - SMTP_PASSWORD=smtppasswordhere
+      - SMTP_ADDRESS=smtpaddresshere
+      - SMTP_DOMAIN=smtpdomainhere
     links:
       - pg
       - redis
