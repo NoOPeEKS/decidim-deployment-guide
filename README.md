@@ -2,12 +2,14 @@
 
 ## Create an AWS EC2 Instance
 First, create an AWS account and go to the AWS Management Console. \
-Then, go to the EC2 Panel and select the big orange button `Launch Instance`. \ 
+Then, go to the EC2 Panel and select the big orange button `Launch Instance`. 
+
 ![EC2 main page](./images/awsec2mainpage.png)
 
 Then, select your instance name, operating system (for this tutorial we will be using Amazon Linux x86), instance type (we will be using t2.medium, with 2 vCPUs and 4GB RAM it's enough), and generate a key pair for connecting to it through ssh. \ 
 
-Next, set up the firewall rules as you please, but since this is meant to be a web server, you should leave it like this: \ 
+Next, set up the firewall rules as you please, but since this is meant to be a web server, you should leave it like this:
+
 ![Firewall rules](./images/networkec2settings.png)
 
 Finally, set the amount of storage you will need for this server. In this case, you should at least give it 50GB of storage. Click on launch instance and you are set to go.
