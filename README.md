@@ -1,5 +1,11 @@
 # Deploying a Decidim Instance
 
+## Create an AWS EC2 Instance
+First, create an AWS account and go to the AWS Management Console. \
+Then, go to the EC2 Panel and select the big orange button `Launch Instance`. ![EC2 main page](./images/awsec2mainpage.png) \
+
+
+
 ## Generating selfsigned certificates
 If you haven't bought a domain, you can still use the application through self-signed SSL certificates, but browsers will raise a warning.
 ```bash
