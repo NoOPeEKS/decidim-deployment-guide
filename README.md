@@ -62,3 +62,13 @@ Fill the Organization Admin fields with its name and its email. Decidim will sen
 
 Navigate to `https://localhost:443/` or `subdomain.domain.tld` and log in as the user you just updated.
 Customize the website to your preferences!
+
+## Set Up a Cron Job to backup Decidim's database
+First, edit the paths inside `cron-backup-pg.sh` to match yours.
+```bash
+sudo dnf install cronie
+chmod +x cron-backup-pg.sh
+sudo crontab -e
+0 0 */7 * * /home/ec2-user/decidim-tutorial/scripts/cron-backup-pg.sh # Paste this inside the text editor and exit
+```
+These commands will automatically run the backup script once every 7 days.
