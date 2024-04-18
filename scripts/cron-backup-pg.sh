@@ -1,10 +1,3 @@
 #!/bin/bash
 
-# Source folder path
-SOURCE_DIR="/var/lib/docker/volumes/yourpgvolumename/"
-
-# Destiny folder path
-DESTINATION_DIR="/var/backups/yourpgvolumename"
-
-# Copy only files and directories that have changed using rsync
-rsync -av "$SOURCE_DIR" "$DESTINATION_DIR"
+aws s3 cp /var/lib/docker/volumes/decidim-tutorial_pg-data s3://your-bucket-name/
