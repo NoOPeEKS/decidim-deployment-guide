@@ -6,7 +6,7 @@ Then, go to the EC2 Panel and select the big orange button `Launch Instance`.
 
 ![EC2 main page](./images/awsec2mainpage.png)
 
-Then, select your instance name, operating system (for this tutorial we will be using Amazon Linux x86), instance type (we will be using t2.medium, with 2 vCPUs and 4GB RAM it's enough), and generate a key pair for connecting to it through ssh. \ 
+Then, select your instance name, operating system (for this tutorial we will be using Amazon Linux x86), instance type (we will be using t2.medium, with 2 vCPUs and 4GB RAM it's enough), and generate a key pair for connecting to it through ssh. 
 
 Next, set up the firewall rules as you please, but since this is meant to be a web server, you should leave it like this:
 
@@ -84,11 +84,12 @@ Navigate to `https://localhost:443/` or `subdomain.domain.tld` and log in as the
 Customize the website to your preferences!
 
 ## Set Up a Cron Job to backup Decidim's database
-First, edit the paths inside `cron-backup-pg.sh` to match yours.
+Firstly, create an S3 Bucket from your AWS Console and set your EC2 instance permissions to access this bucket.
+Then, edit the S3 URL inside `cron-backup-pg.sh` to match your bucket's URL. You probably just need to change it to your bucket's name.
+Finally, execute the following commands to set up a Cron Job that backs up the database every 7 days.
 ```bash
 sudo dnf install cronie
 chmod +x cron-backup-pg.sh
 sudo crontab -e
 0 0 */7 * * /home/ec2-user/decidim-tutorial/scripts/cron-backup-pg.sh # Paste this inside the text editor and exit
 ```
-These commands will automatically run the backup script once every 7 days.
