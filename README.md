@@ -86,6 +86,7 @@ Customize the website to your preferences!
 ## Set Up a Cron Job to backup Decidim's database
 Firstly, create an S3 Bucket from your AWS Console and set your EC2 instance permissions to access this bucket.
 Then, edit the S3 URL inside `cron-backup-pg.sh` to match your bucket's URL. You probably just need to change it to your bucket's name.
+Then, change the required names for your Postgres user and Database.
 Finally, execute the following commands to set up a Cron Job that backs up the database every 7 days.
 ```bash
 sudo dnf install cronie
