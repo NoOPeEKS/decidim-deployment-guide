@@ -49,7 +49,7 @@ Then, open nginx.Dockerfile and modify it so that the copy commands look like th
 - `COPY fullchain.pem /etc/ssl/certs/fullchain.pem`
 - `COPY privkey.pem /etc/ssl/certs/privkey.pem`
 
-## Creating a Docker Swarm cluster and deployng decidim stack
+## Creating a Docker Swarm cluster and deploying decidim stack
 These commands will create a docker swarm cluster to orchestrate and manage the services needed to run decidim and its services.
 ```bash
 sudo docker swarm init
