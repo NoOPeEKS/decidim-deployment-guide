@@ -1,3 +1,11 @@
 #!/bin/bash
 
-aws s3 cp /var/lib/docker/volumes/decidim-tutorial_pg-data s3://your-bucket-name/ --recursive
+DATE=$(date +%Y%m%d_%H%M%S)
+
+if ! mkdir /tmp/backups; then
+    mkdir /tmp/backups
+fi
+
+docker exec $(docker ps | grep postgres | awk '{ print $1 }') pg_dump -U youruserhere -d yourdatabasehere > /tmp/backups/dump_$DATE.sql
+
+aws s3 cp /tmp/backups/dump_$DATE.sql s3://your-bucket-name/
