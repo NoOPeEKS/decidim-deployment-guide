@@ -61,11 +61,11 @@ sudo docker stack deploy --detach=false -c docker-compose.yml decidim-tutorial
 ```
 
 ## Creating a System Admin User
-To create a System Admin User, you only need to execute a single script and pass it its credentials:
+To create a System Admin User, you only need to execute some simple commands and follow the prompt:
 ```bash
-cd scripts
-sudo docker ps # This will show every container with its id, name, image_name, etc
-./create-sysadmin.sh <DECIDIM_CONTAINER_ID> <EMAIL> <PASSWORD>
+sudo docker exec -it $(sudo docker ps | grep ghcr | awk '{print $1}') /bin/bash
+bin/rails decidim_system:create_admin
+exit
 ```
 
 ## Creating a New Organization
