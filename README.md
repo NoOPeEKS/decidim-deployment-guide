@@ -49,7 +49,7 @@ Then, open nginx.Dockerfile and modify it so that the copy commands look like th
 - `COPY fullchain.pem /etc/ssl/certs/fullchain.pem`
 - `COPY privkey.pem /etc/ssl/certs/privkey.pem`
 
-## Creating a Docker Swarm cluster and deploying decidim stack
+## Creating a Docker Swarm cluster and deploying Decidim stack
 These commands will create a docker swarm cluster to orchestrate and manage the services needed to run decidim and its services.
 ```bash
 sudo docker swarm init
@@ -57,15 +57,14 @@ sudo docker swarm init
 Update your SMTP server's environment variables in `docker-compose.yml` and then execute the following commands:
 ```bash
 sudo docker-compose build
-sudo docker stack deploy --detach=false -c docker-compose.yml decidim-tutorial
+sudo docker stack deploy -c docker-compose.yml decidim-tutorial
 ```
 
 ## Creating a System Admin User
 To create a System Admin User, you only need to execute some simple commands and follow the prompt:
 ```bash
 sudo docker exec -it $(sudo docker ps | grep ghcr | awk '{print $1}') /bin/bash
-bin/rails decidim_system:create_admin
-exit
+bundle exec rake decidim_system:create_admin
 ```
 
 ## Creating a New Organization
@@ -74,7 +73,7 @@ Visit `https://localhost:443` or `subdomain.domain.tld`, and log in with the sys
 
 ### SMTP Server config and Organization Admin Creation
 
-In Decidim 0.28.0 there is a bug that will not allow to set your smtp server from the system panel, as if you introduce a password, it will crash and not create a new organization. Leave those fields empty, as you should have already configured your SMTP server in `docker-compose.yml`.
+In Decidim 0.28.0 there is a bug that will not allow to set your smtp server from the system panel [`error when saving smtp password for organization #12535`](https://github.com/decidim/decidim/issues/12535), as if you introduce a password, it will crash and not create a new organization. Leave those fields empty, as you should have already configured your SMTP server in `docker-compose.yml`.
 
 Fill the Organization Admin fields with its name and its email. Decidim will send an email to the provided address. Follow the steps to create an admin account.
 
