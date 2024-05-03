@@ -91,5 +91,5 @@ Finally, execute the following commands to set up a Cron Job that backs up the d
 sudo dnf install cronie
 chmod +x cron-backup-pg.sh
 sudo crontab -e
-0 0 */7 * * /home/ec2-user/decidim-tutorial/scripts/cron-backup-pg.sh # Paste this inside the text editor and exit
+0 0 */7 * * /home/ec2-user/decidim-deployment-guide/scripts/cron-backup-pg.sh # Paste this inside the text editor and exit
 ```
