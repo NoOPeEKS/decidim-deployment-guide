@@ -54,8 +54,9 @@ These commands will create a docker swarm cluster to orchestrate and manage the 
 ```bash
 sudo docker swarm init
 ```
-Update your SMTP server's environment variables in `docker-compose.yml` and then execute the following commands:
+Update environment variables with your own values in `docker-compose.yml` and then execute the following commands:
 ```bash
+mkdir /tmp/rails_storage ·# Or call it whatever you want but remember to change it in docker-compose.yml
 sudo docker-compose build
 sudo docker stack deploy -c docker-compose.yml decidim-tutorial
 ```
