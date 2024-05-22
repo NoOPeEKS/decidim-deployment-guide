@@ -8,9 +8,12 @@ services:
     ports:
       - 3000:3000
     volumes:
+      - /tmp/rails_storage:/code:storage
       - ./scripts:/code/vendor
     environment:
+      - TZ=Europe/Madrid
       - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+      - SECRET_KEY_BASE=yoursecretkeyhere
       - RAILS_ENV=production
       - DATABASE_HOST=pg
       - DATABASE_USERNAME=postgres
