@@ -1,7 +1,7 @@
 version: "3"
 services:
   decidim:
-    image: ghcr.io/decidim/decidim:0.28.0
+    image: ghcr.io/decidim/decidim:0.28.1
     container_name: container_decidim
     entrypoint: ["/code/vendor/hello-world.sh"]
     command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
