@@ -94,3 +94,10 @@ chmod +x cron-backup-pg.sh
 sudo crontab -e
 0 0 */7 * * /home/ec2-user/decidim-deployment-guide/scripts/cron-backup-pg.sh # Paste this inside the text editor and exit
 ```
+## How to renew certificates
+Let's Encrypt's SSL certificates have an expiry date of 90 days. This means that in order for your domain to remain secure, they need to be renewed before they expire.
+To do so, execute the following command:
+```bash
+sudo certbot renew
+```
+Then copy the fullchain.pem from the route that is output to you to the repository's folder and build the image again. Then, redeploy the service and your certificates will be updated right away.
